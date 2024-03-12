@@ -1,4 +1,7 @@
-package com.ridesharing;
+package com.ridesharing.RideInfo;
+import com.ridesharing.Model.Driver;
+import com.ridesharing.Model.Rider;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +15,7 @@ public class RideDetails {
     @Getter @Setter int destYCord;
     @Getter @Setter int time;
 
-    RideDetails( String rideId, Rider r, Driver d)
+    public RideDetails( String rideId, Rider r, Driver d)
     {
         this.rideId = rideId;
         this.rider = r;
