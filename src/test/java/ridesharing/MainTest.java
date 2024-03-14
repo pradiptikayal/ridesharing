@@ -1,14 +1,14 @@
 package ridesharing;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
 import com.ridesharing.Processor.Processor;
 
-import org.junit.Assert;
-import org.junit.Before;
-
 public class MainTest {
-    Processor testPr;
-    @Before
-    public  void setUp(){
+    static Processor testPr;
+    @BeforeAll
+    public static void setUp(){
         testPr = new Processor();
         testPr.setCommand("ADD_DRIVER D1 1 1");
         testPr.processCommand();
@@ -22,8 +22,8 @@ public class MainTest {
 
     @Test
     public void checkMemory(){
-        Assert.assertTrue(testPr.getDriverList().size() == 3);
-        Assert.assertTrue(testPr.getRiderList().size() == 1);
+        Assertions.assertTrue(testPr.getDriverList().size() == 3);
+        Assertions.assertTrue(testPr.getRiderList().size() == 1);
     }
 
     @Test
@@ -32,7 +32,7 @@ public class MainTest {
         testPr.setCommand("MATCH R1");
         testPr.processCommand();
 
-        Assert.assertTrue(testPr.getRiderToNearestDrivers().size() == 1);
+        Assertions.assertTrue(testPr.getRiderToNearestDrivers().size() == 1);
     }
 
 }

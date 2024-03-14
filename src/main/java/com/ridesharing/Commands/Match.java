@@ -48,6 +48,7 @@ public class Match implements Commander{
                 k++;    
             }
             riderToNearestDrivers.put(rider, driversMatched);
+            System.out.println();
         }
         else
             System.out.println("NO_DRIVERS_AVAILABLE"); 

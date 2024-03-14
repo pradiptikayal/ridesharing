@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StartRide.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ridesharing</a> &gt; <a href="index.source.html" class="el_package">com.ridesharing.Commands</a> &gt; <span class="el_source">StartRide.java</span></div><h1>StartRide.java</h1><pre class="source lang-java linenums">package com.ridesharing.Commands;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import com.ridesharing.Model.Driver;
+import com.ridesharing.Model.Rider;
+import com.ridesharing.RideInfo.RideDetails;
+
+public class StartRide implements Commander {
+
+    String rideid;
+    int nthDriver;
+    String riderId;
+    List&lt;Rider&gt; riderList;
+    Map&lt;Rider, List&lt;Driver&gt;&gt; riderToNearestDrivers;
+    Map&lt;String,RideDetails&gt; ridesOngoing;
+    List&lt;Driver&gt; driverList;
+    public StartRide(String rideid, int nthDriver, String riderId, List&lt;Rider&gt; riderList, Map&lt;Rider, List&lt;Driver&gt;&gt; riderToNearestDrivers, 
+                Map&lt;String,RideDetails&gt; ridesOngoing, List&lt;Driver&gt; driverList)
+<span class="nc" id="L22">    {</span>
+<span class="nc" id="L23">        this.rideid = rideid;</span>
+<span class="nc" id="L24">        this.nthDriver = nthDriver;</span>
+<span class="nc" id="L25">        this.riderId = riderId;</span>
+<span class="nc" id="L26">        this.riderList = riderList;</span>
+<span class="nc" id="L27">        this.riderToNearestDrivers = riderToNearestDrivers;</span>
+<span class="nc" id="L28">        this.ridesOngoing = ridesOngoing;</span>
+<span class="nc" id="L29">        this.driverList = driverList;</span>
+<span class="nc" id="L30">    }</span>
+
+    @Override
+    public void performCommand() {
+<span class="nc" id="L34">        Rider rdr = null;</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if(riderList.size() == 0 )</span>
+<span class="nc" id="L36">            System.out.println(&quot;INVAILD_RIDE&quot;);</span>
+        else
+        {   
+            try
+            {   
+<span class="nc" id="L41">                rdr = riderList.stream().filter(x -&gt; x.id.equals(riderId)).collect(Collectors.toList()).get(0);</span>
+            }
+<span class="nc" id="L43">            catch( Exception e )</span>
+            {
+<span class="nc" id="L45">                System.out.println(&quot;INVAILD_RIDE&quot;);</span>
+<span class="nc" id="L46">                return;</span>
+<span class="nc" id="L47">            }</span>
+        }
+<span class="nc" id="L49">        List&lt;Driver&gt; matchedDrvs = riderToNearestDrivers.get(rdr);</span>
+<span class="nc bnc" id="L50" title="All 4 branches missed.">        if(matchedDrvs.size()&lt;nthDriver || ridesOngoing.containsKey(rideid)) </span>
+        {
+<span class="nc" id="L52">            System.out.println(&quot;INVAILD_RIDE&quot;);</span>
+        }
+        else
+        {
+                              
+<span class="nc" id="L57">            Driver drv = null;</span>
+            try
+            {
+<span class="nc" id="L60">                drv = driverList.stream().filter( y -&gt; y.id.equals(matchedDrvs.get(nthDriver-1).getId())).collect(Collectors.toList()).get(0);</span>
+                                    
+            }
+<span class="nc" id="L63">            catch(Exception e )</span>
+            {
+<span class="nc" id="L65">                System.out.println(&quot;INVAILD_RIDE&quot;);</span>
+<span class="nc" id="L66">                return;</span>
+<span class="nc" id="L67">            }</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            if(!drv.isAvailable())</span>
+<span class="nc" id="L69">                System.out.println(&quot;INVAILD_RIDE&quot;);</span>
+            else
+            {
+<span class="nc" id="L72">                drv.setAvailable(false);</span>
+<span class="nc" id="L73">                RideDetails rd = new RideDetails(rideid, rdr, drv);</span>
+<span class="nc" id="L74">                ridesOngoing.put(rideid, rd);</span>
+<span class="nc" id="L75">                System.out.println(&quot;RIDE_STARTED &quot;+ rideid);</span>
+            }
+        }
+<span class="nc" id="L78">    }</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

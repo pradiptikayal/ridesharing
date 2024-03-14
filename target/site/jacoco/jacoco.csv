@@ -1,0 +1,15 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+ridesharing,com.ridesharing.Utility,Matcher,0,87,0,4,0,18,0,5,0,3
+ridesharing,com.ridesharing.Commands,StopRide,78,0,6,0,17,0,5,0,2,0
+ridesharing,com.ridesharing.Commands,AddRider,0,31,0,0,0,9,0,2,0,2
+ridesharing,com.ridesharing.Commands,GenerateBill,128,0,6,0,20,0,5,0,2,0
+ridesharing,com.ridesharing.Commands,StartRide,151,0,8,0,33,0,8,0,4,0
+ridesharing,com.ridesharing.Commands,Match,9,91,2,4,5,23,2,4,0,3
+ridesharing,com.ridesharing.Commands,AddDriver,0,31,0,0,0,9,0,2,0,2
+ridesharing,com.ridesharing.Model,Driver,22,21,0,0,1,8,6,3,6,3
+ridesharing,com.ridesharing.Model,Rider,15,18,0,0,1,7,4,3,4,3
+ridesharing,com.ridesharing,Main,13,0,0,0,4,0,2,0,2,0
+ridesharing,com.ridesharing.Processor,Processor,86,118,4,3,18,26,6,6,2,4
+ridesharing,com.ridesharing.Processor,Tasks,38,0,2,0,13,0,3,0,2,0
+ridesharing,com.ridesharing.RideInfo,RideStatus,15,0,0,0,3,0,1,0,1,0
+ridesharing,com.ridesharing.RideInfo,RideDetails,64,0,0,0,12,0,15,0,15,0
